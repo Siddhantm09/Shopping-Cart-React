@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RemoveFromCart } from "../Redux/reducer/ProductSlice";
+import { deleteFromCart } from "../Redux/reducer/ProductSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const Cart = () => {
                                   <button>
                                     <i
                                       onClick={() =>
-                                        dispatch(RemoveFromCart(item.id))
+                                        dispatch(deleteFromCart(item.id))
                                       }
                                       class="fas fa-times"
                                       style={{ cursor: "pointer" }}

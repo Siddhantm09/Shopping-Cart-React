@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AddtoCart, fetchAllProducts } from "../Redux/reducer/ProductSlice";
+import {
+  AddtoCart,
+  RemoveFromCart,
+  fetchAllProducts,
+} from "../Redux/reducer/ProductSlice";
 import { Link } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
+  const { products, loading } = useSelector((state) => state.allProducts);
 
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
 
-  const { products, loading, carts } = useSelector(
-    (state) => state.allProducts
-  );
-  console.log(carts);
   return (
     <div>
       <div className="container-fluid">
         <div className="row">
-          <h1 className="text-center mt-4">All Products</h1>
+          {/* <h1 className="text-center mt-4">All Products</h1> */}
           {loading && <h2>Loading!!</h2>}
           {products &&
             products.map((item, id) => {
@@ -25,9 +26,16 @@ const Home = () => {
                 <div
                   key={id}
                   class="card mx-auto my-4 "
-                  style={{ width: "18rem" }}
+                  style={{
+                    width: "18rem",
+                    padding: "1.2rem",
+                    height: "500px",
+                  }}
                 >
                   <img
+                    style={{
+                      height: "200px",
+                    }}
                     src={item.image}
                     class="card-img-top img-responsive"
                     alt="img"
@@ -48,11 +56,34 @@ const Home = () => {
                         </button>
                       </Link>
                     </div>
-                    <div className="cart-info">
-                      <button onClick={dispatch(AddtoCart(item.id))}>+</button>
-                      {/* <p>{curQuantity}</p> */}
 
-                      {/* <button onClick={remove}>-</button> */}
+                    <div
+                      style={{ textAlign: "center", margin: "10px" }}
+                      className=""
+                    >
+                      <button
+                        style={{
+                          border: "1px solid black",
+                          margin: "0px 20px",
+                        }}
+                        type="button"
+                        class="btn btn-light"
+                        onClick={() => dispatch(AddtoCart(item.id))}
+                      >
+                        +
+                      </button>
+
+                      <button
+                        style={{
+                          border: "1px solid black",
+                          margin: "10px 20px",
+                        }}
+                        type="button"
+                        class="btn btn-light"
+                        onClick={() => dispatch(RemoveFromCart(item.id))}
+                      >
+                        -
+                      </button>
                     </div>
                   </div>
                 </div>
