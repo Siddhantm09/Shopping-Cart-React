@@ -29,7 +29,7 @@ const Home = () => {
                   style={{
                     width: "18rem",
                     padding: "1.2rem",
-                    height: "500px",
+                    height: "80%",
                   }}
                 >
                   <img
@@ -57,7 +57,7 @@ const Home = () => {
                       </Link>
                     </div>
 
-                    <div
+                    {/* <div
                       style={{ textAlign: "center", margin: "10px" }}
                       className=""
                     >
@@ -84,7 +84,7 @@ const Home = () => {
                       >
                         -
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               );

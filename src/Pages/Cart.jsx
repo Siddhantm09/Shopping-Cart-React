@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteFromCart } from "../Redux/reducer/ProductSlice";
+import {
+  deleteFromCart,
+  AddtoCart,
+  RemoveFromCart,
+} from "../Redux/reducer/ProductSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -43,15 +47,33 @@ const Cart = () => {
                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                   <h6 class="text-black">{item.title}</h6>
                                 </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 ">
-                                  {/* <button type="button" class="btn btn-light">
+                                <div
+                                  class="col-md-3 col-lg-3 col-xl-2 "
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "15px",
+                                  }}
+                                >
+                                  <button
+                                    onClick={() => dispatch(AddtoCart(item.id))}
+                                    type="button"
+                                    class="btn btn-light"
+                                  >
                                     +
                                   </button>
-
-                                  <button type="button" class="btn btn-light">
+                                  <h6 style={{ marginTop: "3px" }}>
+                                    {item.quantity}
+                                  </h6>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(RemoveFromCart(item.id))
+                                    }
+                                    type="button"
+                                    class="btn btn-light"
+                                  >
                                     -
-                                  </button> */}
-                                  <h6>Quantity: {item.quantity}</h6>
+                                  </button>
                                 </div>
                                 <div class="col-md-3 col-lg-2 col-xl-2">
                                   <h6 class="text-black">{item.price}</h6>
